@@ -1,0 +1,78 @@
+.App {
+  text-align: center;
+  height: 100vh;
+  background-image: url('https://t4.ftcdn.net/jpg/02/10/45/95/360_F_210459536_XmLDEcKq2DpeNLVmheuWeu9NM9aGKnih.jpg');
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  color: #333;
+  padding-top: 10%;
+  overflow: hidden;
+}
+
+h1 {
+  font-family: 'Arial', sans-serif;
+  font-size: 2.5em;
+  margin: 0 0 30px 0;
+  animation: colorChange 5s infinite, fadeInDown 1s ease-out;
+}
+
+@keyframes colorChange {
+  0%, 100% { color: red; }
+  25% { color: blue; }
+  50% { color: green; }
+  75% { color: purple; }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+button {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 15px 30px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 18px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+  transition: all 0.3s;
+  animation: pulse 1.5s infinite;
+}
+
+button:hover {
+  background-color: #45a049;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+  transform: scale(1.05);
+}
+
+button:active {
+  transform: scale(0.95);
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
