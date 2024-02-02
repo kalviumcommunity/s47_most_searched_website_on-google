@@ -1,0 +1,18 @@
+[
+    {"id": 1, "Website": "Google", "Link": "Google.com", "year": 2023,"Description": "Welcome to the world of search engines. Among them, Google stands out as the undisputed leader, serving billions of search queries daily.",
+"image": "https://media-cldnry.s-nbcnews.com/image/upload/t_social_share_1024x768_scale,f_auto,q_auto:best/streams/2013/March/130326/1C6639340-google-logo.jpg"},
+    {"id": 2, "Website": "Youtube", "Link": "youtube.com", "year": 2023},
+    {"id": 3, "Website": "Facbook", "Link": "facbook.com", "year": 2023},
+    {"id": 4, "Website": "twitter", "Link": "google.com", "year": 2023},
+    {"id": 5, "Website": "wikipedia", "Link": "wikipedia.com", "year": 2023},
+    {"id": 6, "Website": "instagram", "Link": "instagram.com", "year": 2023},
+    {"id": 7, "Website": "reddit", "Link": "reddit.com", "year": 2023},
+    {"id": 8, "Website": "amazon", "Link": "amazon.com", "year": 2023},
+    {"id": 9, "Website": "tiktok", "Link": "tiktok.com", "year": 2023},
+    {"id": 10, "Website": "yahoo", "Link": "yahoo.com", "year": 2023},
+    {"id": 11, "Website": "bing", "Link": "bing.com", "year": 2023},
+    {"id": 12, "Website": "chatgpt", "Link": "chat.openai.com", "year": 2023},
+    {"id": 13, "Website": "whatsapp", "Link": "whatsapp.com", "year": 2023},
+    {"id": 14, "Website": "weather", "Link": "weather.com", "year": 2023},
+    {"id": 15, "Website": "openai", "Link": "openai.com", "year": 2023}
+]
