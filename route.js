@@ -26,3 +26,6 @@ route.delete('/:id',(req,res)=>{
 })
 
 module.exports = route
+
+
+// mongodb+srv://nitinsoni:Nitin11@most-searched-web.cc9wsj9.mongodb.net/?retryWrites=true&w=majority
