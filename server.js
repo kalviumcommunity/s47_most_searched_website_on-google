@@ -1,11 +1,13 @@
+//server.js
+//mongodb+srv://nitinsoni:Nitin@cluster0.nsd72yp.mongodb.net/?retryWrites=true&w=majority'
+
 const express = require("express");
 const app = express();
 const mongoose = require('mongoose');
+const route = require('./route')
 const cors = require('cors');
-const Website = require('./WebsiteModel'); 
 app.use(express.json())
 app.use(cors());
-
 
 const URI = 'mongodb+srv://nitinsoni:Nitin@cluster0.nsd72yp.mongodb.net/?retryWrites=true&w=majority';
 
@@ -18,16 +20,7 @@ mongoose.connect(URI, { dbName: "websites" })
         console.log(err.message);
     });
 
-app.get("/", (req, res) => {
-    Website.find({})
-    .then(data => {
-        res.json(data);
-    }).catch(err => {
-        console.error(err);
-        res.status(500).send('Error fetching data');
-    });
-});
-
+app.use('/',route)
 app.get("/ping", (req, res) => {
     res.json({ message: 'Pong' });
 });
