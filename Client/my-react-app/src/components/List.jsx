@@ -81,7 +81,7 @@ const WebsiteList = ({ websites, fetchWebsites }) => {
               <p><strong>{website.Description}</strong></p>
               <a href={website.Link} target="_blank" rel="noopener noreferrer">{website.Link}</a>
               <p>{website.year}</p> {/* Corrected 'yea' to 'year' to match the schema */}
-              {website.image && <img src={website.image} alt={website.Website} style={{maxWidth: "100px"}} />} {/* Added alt attribute to use website name */}
+              {website.image && <img src={website.image} alt={website.Website} style={{maxWidth: "200px"}} />} {/* Added alt attribute to use website name */}
               <button onClick={() => handleEdit(website)}>Edit</button>
               <button onClick={() => handleDelete(website._id)}>Delete</button>
             </>

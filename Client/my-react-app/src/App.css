@@ -8,6 +8,9 @@ body, input, button {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   color: #333;
 }
+/* App.css */
+
+
 
 .App {
   max-width: 1200px;
@@ -105,11 +108,59 @@ button:hover {
   margin: 5px 0;
 }
 
+
+.user-details {
+  margin-top: 20px;
+  padding: 15px 20px; 
+  background-color: #ffffff; 
+  border: 1px solid #e0e0e0; 
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+  border-radius: 8px; 
+  display: inline-block;
+  margin-right: 500px;
+  font-size: 16px;
+  color: #333; 
+  font-weight: 500; 
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5); 
+  transition: all 0.3s ease; 
+}
+
+
+
+
+.logout-button {
+  float: right;
+  margin: 20px;
+  padding: 10px 20px;
+  background-color: #ff4d4d;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.logout-button:hover {
+  background-color: #ff6666;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.header-title {
+  margin-left: 200px;
+}
+
+
 .website-item img {
   width: 100%;
   height: auto;
-  margin-top: 10px;
-  border-radius: 5px;
+  margin-top: 50px;
+  border-radius: 10px;
+  margin-bottom: 50px;
 }
 
 @media (max-width: 768px) {

@@ -8,9 +8,11 @@ const AddWebsiteForm = ({ onNewWebsiteAdded }) => {
   const [websiteYear, setWebsiteYear] = useState('');
   const [websiteDescription, setWebsiteDescription] = useState('');
   const [websiteImage, setWebsiteImage] = useState(''); // State hook for the image URL
+  const [errorMessage, setErrorMessage] = useState(''); // State hook for storing error messages
 
   const handleSubmit = async (e) => {
     e.preventDefault(); // Prevent the default form submit action
+    setErrorMessage(''); // Clear any existing error messages
 
     try {
       // Submit the form data
@@ -22,25 +24,27 @@ const AddWebsiteForm = ({ onNewWebsiteAdded }) => {
         image: websiteImage,
       });
 
-    
+      // Reset form fields
       setWebsiteName('');
       setWebsiteLink('');
       setWebsiteYear('');
       setWebsiteDescription('');
       setWebsiteImage('');
 
-      
+      // Invoke callback if provided
       if (onNewWebsiteAdded) {
         onNewWebsiteAdded();
       }
     } catch (error) {
       console.error('Failed to add the website:', error);
-      
+      // Set the error message from the server response if available
+      setErrorMessage(error.response?.data || 'Failed to add the website');
     }
   };
 
   return (
     <form onSubmit={handleSubmit} className="add-website-form">
+      {errorMessage && <div className="error-message">{errorMessage}</div>} {/* Display error message */}
       <input
         type="text"
         placeholder="Website Name"
