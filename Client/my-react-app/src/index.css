@@ -1,0 +1,6 @@
+.logout-button {
+    position: fixed; /* Fixed position relative to the viewport */
+    top: 20px; /* 20 pixels from the top */
+    right: 20px; /* 20 pixels from the right */
+    z-index: 1000; /* Ensure it sits on top of other elements */
+  }
