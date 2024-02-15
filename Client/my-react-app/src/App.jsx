@@ -5,7 +5,7 @@ import WebsiteList from './components/List';
 import Login from './components/Login';
 import './App.css';
 
-// Custom cookie management functions continued
+// Custom cookie management functions
 const getCookie = (name) => {
   const cookies = document.cookie.split('; ').reduce((acc, current) => {
     const [key, value] = current.split('=');
@@ -25,8 +25,8 @@ const App = () => {
   const [error, setError] = useState('');
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userDetails, setUserDetails] = useState({ Name: '', Username: '', Email: '' });
+  const [sortCriteria, setSortCriteria] = useState('Website'); // State for sorting criteria
 
-  
   useEffect(() => {
     if (isLoggedIn) {
       fetchWebsites();
@@ -35,16 +35,23 @@ const App = () => {
       const email = getCookie('Email');
       setUserDetails({ Name: name, Username: username, Email: email });
     }
-  }, [isLoggedIn]);
+  }, [isLoggedIn, sortCriteria]); // Also depend on sortCriteria to refetch/sort when it changes
 
   const fetchWebsites = async () => {
     try {
       const response = await axios.get('http://localhost:4000/');
-      setWebsites(response.data);
+      const sortedWebsites = sortWebsites(response.data, sortCriteria); // Sort after fetching
+      setWebsites(sortedWebsites);
     } catch (error) {
       console.error("Error fetching website data:", error);
       setError('Error fetching website data. Please try again later.');
     }
+  };
+
+  const sortWebsites = (websites, criteria) => {
+    return websites.sort((a, b) => {
+      return a[criteria].localeCompare(b[criteria]);
+    });
   };
 
   const toggleForm = () => setShowForm(!showForm);
@@ -77,6 +84,15 @@ const App = () => {
       </div>
       <div className="user-details">
         User Details: <br />Name = {userDetails.Name} <br />Username = {userDetails.Username} <br />Email = {userDetails.Email}
+      </div>
+      <div className="sort-selection">
+        <label>Sort By: </label>
+        <select value={sortCriteria} onChange={(e) => setSortCriteria(e.target.value)}>
+          <option value="Website">Website Name</option>
+          <option value="Link">Website Link</option>
+          <option value="image">Image URL</option>
+          <option value="Description">Description</option>
+        </select>
       </div>
       <button onClick={toggleForm}>
         {showForm ? 'Hide Form' : 'Add New Entity'}
