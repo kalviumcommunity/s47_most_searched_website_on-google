@@ -1,16 +1,23 @@
 import React, { useState } from "react";
 import { useNavigate } from 'react-router-dom';
-
+import axios from "axios";
 const Login = ({ onLoginSuccess }) => {
   const navigate = useNavigate();
   const [loginDetails, setLoginDetails] = useState({ Name: '', Username: '', Email: '' });
 
   const handleLogin = (e) => {
     e.preventDefault();
- 
-    onLoginSuccess(loginDetails);
-    navigate('/');
+    axios.post('http://localhost:4000/login')
+      .then((response) => {
+        console.log(response.data);
+        // document.cookie = `Token=${response.data}`
+        onLoginSuccess(loginDetails);
+        navigate('/');
+      }).catch((error) => {
+        console.log(error);
+      })
   };
+
 
   const setCookies = (key, value) => {
     document.cookie = `${key}=${value}`;

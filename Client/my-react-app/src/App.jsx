@@ -5,6 +5,20 @@ import WebsiteList from './components/List';
 import Login from './components/Login';
 import './App.css';
 
+// Custom cookie management functions continued
+const getCookie = (name) => {
+  const cookies = document.cookie.split('; ').reduce((acc, current) => {
+    const [key, value] = current.split('=');
+    acc[key] = decodeURIComponent(value);
+    return acc;
+  }, {});
+  return cookies[name] || '';
+};
+
+const deleteCookie = (name) => {
+  document.cookie = `${name}=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT`;
+};
+
 const App = () => {
   const [websites, setWebsites] = useState([]);
   const [showForm, setShowForm] = useState(false);
@@ -12,12 +26,13 @@ const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userDetails, setUserDetails] = useState({ Name: '', Username: '', Email: '' });
 
+  
   useEffect(() => {
     if (isLoggedIn) {
       fetchWebsites();
-      const name = getCookieValue('Name');
-      const username = getCookieValue('Username');
-      const email = getCookieValue('Email');
+      const name = getCookie('Name');
+      const username = getCookie('Username');
+      const email = getCookie('Email');
       setUserDetails({ Name: name, Username: username, Email: email });
     }
   }, [isLoggedIn]);
@@ -25,14 +40,9 @@ const App = () => {
   const fetchWebsites = async () => {
     try {
       const response = await axios.get('http://localhost:4000/');
-      if (Array.isArray(response.data)) {
-        setWebsites(response.data);
-      } else {
-        console.error('Unexpected API response structure:', response.data);
-        setError('Unexpected API response structure. Please check the console for more information.');
-      }
+      setWebsites(response.data);
     } catch (error) {
-      console.error("There was an error retrieving the website data:", error);
+      console.error("Error fetching website data:", error);
       setError('Error fetching website data. Please try again later.');
     }
   };
@@ -51,16 +61,6 @@ const App = () => {
     setUserDetails({ Name: '', Username: '', Email: '' });
   };
 
-  function getCookieValue(name) {
-    const nameString = name + "=";
-    const value = document.cookie.split('; ').find(row => row.startsWith(nameString));
-    return value ? decodeURIComponent(value.split('=')[1]) : null;
-  }
-
-  function deleteCookie(name) {
-    document.cookie = name + '=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
-  }
-
   if (error) {
     return <div className="App">{error}</div>;
   }
@@ -72,13 +72,13 @@ const App = () => {
   return (
     <div className="App">
       <div className="header">
-        <h1 className="header-title">Most Searched Websites on the Internet</h1>
-        <button onClick={handleLogout} className="logout-button">Logout</button>
+        <h1>Most Searched Websites on the Internet</h1>
+        <button onClick={handleLogout}>Logout</button>
       </div>
       <div className="user-details">
-        User Details: <br />Name = {userDetails.Name} <br /> Username = {userDetails.Username} <br /> Email = {userDetails.Email}
+        User Details: <br />Name = {userDetails.Name} <br />Username = {userDetails.Username} <br />Email = {userDetails.Email}
       </div>
-      <button onClick={toggleForm} className="toggle-form-button">
+      <button onClick={toggleForm}>
         {showForm ? 'Hide Form' : 'Add New Entity'}
       </button>
       {showForm && <AddWebsiteForm onNewWebsiteAdded={fetchWebsites} />}
