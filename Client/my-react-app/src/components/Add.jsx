@@ -73,6 +73,7 @@ const AddWebsiteForm = ({ onNewWebsiteAdded }) => {
         required
       />
       <input
+      
         type="text"
         placeholder="Image URL"
         value={websiteImage}

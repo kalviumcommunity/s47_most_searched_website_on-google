@@ -6,8 +6,7 @@ const cookieParser = require('cookie-parser'); // Ensure cookie-parser is requir
 
 const route = express.Router();
 
-// Ensure the router uses cookie-parser middleware
-route.use(cookieParser());
+// Ensure the routeruses cookie-parser middlewarroute.use(cookieParser());
 
 route.use(express.json());
 
