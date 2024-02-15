@@ -1,5 +1,12 @@
 import React, { useState } from "react";
 import { useNavigate } from 'react-router-dom';
+import axios from "axios";
+
+// Custom cookie management functions
+const setCookie = (name, value, days = 7) => {
+  const expires = new Date(Date.now() + days * 864e5).toUTCString();
+  document.cookie = `${name}=${encodeURIComponent(value)}; expires=${expires}; path=/`;
+};
 
 const Login = ({ onLoginSuccess }) => {
   const navigate = useNavigate();
@@ -7,13 +14,14 @@ const Login = ({ onLoginSuccess }) => {
 
   const handleLogin = (e) => {
     e.preventDefault();
- 
-    onLoginSuccess(loginDetails);
-    navigate('/');
+    axios.post('http://localhost:4000/login', loginDetails).then(() => {
+      onLoginSuccess(loginDetails);
+      navigate('/');
+    });
   };
 
   const setCookies = (key, value) => {
-    document.cookie = `${key}=${value}`;
+    setCookie(key, value, 7); // Set cookies for 7 days
     setLoginDetails(prev => ({ ...prev, [key]: value }));
   };
 
