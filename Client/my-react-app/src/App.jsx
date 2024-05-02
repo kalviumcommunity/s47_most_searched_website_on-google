@@ -12,6 +12,8 @@ const getCookie = (name) => {
     acc[key] = decodeURIComponent(value);
     return acc;
   }, {});
+
+  
   return cookies[name] || '';
 };
 
