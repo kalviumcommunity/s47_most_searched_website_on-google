@@ -69,6 +69,8 @@ route.delete('/:id', (req, res) => {
         return res.status(404).send('Website not found');
       }
       res.json({ message: 'Website deleted successfully' });
+
+
     })
     .catch(err => {
       console.error("Error deleting document:", err);
@@ -76,6 +78,16 @@ route.delete('/:id', (req, res) => {
     });
 });
 
+
+// Assuming you are using Express.js
+route.get('/api/categories', async (req, res) => {
+    try {
+        const categories = await db.query("SELECT * FROM categories");
+        res.json(categories.rows);
+    } catch (error) {
+        res.status(500).send("Server error");
+    }
+});
 
 
 module.exports = route;
